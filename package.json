@@ -1,0 +1,11 @@
+{
+  "name": "winterfell-ping",
+  "version": "1.0.0",
+  "description": "A simple ping / healthcheck utility for winterfell cluster. (a self hosted bare metal kubernetes cluster)",
+  "main": "index.js",
+  "author": "Raj Rajhans <me@rajrajhans.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
