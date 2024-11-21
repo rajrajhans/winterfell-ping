@@ -3,6 +3,22 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
+  console.log('🔍 Request received:', {
+    timestamp: new Date().toISOString(),
+    ip: req.ip,
+    method: req.method,
+    path: req.path,
+    headers: {
+      host: req.headers.host,
+      'user-agent': req.headers['user-agent'],
+      accept: req.headers.accept,
+    },
+    query: req.query,
+    protocol: req.protocol,
+    hostname: req.hostname,
+    userAgent: req.get('user-agent'),
+  });
+
   res.send('OK');
 });
 

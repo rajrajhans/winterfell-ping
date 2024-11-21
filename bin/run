@@ -24,6 +24,10 @@ docker_push_prod() {
     docker push ${registry}/winterfell-ping:latest
 }
 
+run_server() {
+    node server.js
+}
+
 fn_exists() { declare -F "$1" >/dev/null; }
 
 run() {
