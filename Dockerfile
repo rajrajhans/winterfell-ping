@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20-alpine as builder
+FROM --platform=linux/amd64 node:20-alpine as builder
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Production stage
-FROM node:20-alpine
+FROM --platform=linux/amd64 node:20-alpine
 
 WORKDIR /app
 

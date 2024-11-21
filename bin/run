@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker_push() {
+docker_push_dev() {
     registry="k3d-registry.localhost:6000"
     # Check if registry endpoint is accessible
     if ! curl --silent -f "http://${registry}/v2/" >/dev/null; then
@@ -8,6 +8,18 @@ docker_push() {
         exit 1
     fi
     docker build -t winterfell-ping:latest .
+    docker tag winterfell-ping:latest ${registry}/winterfell-ping:latest
+    docker push ${registry}/winterfell-ping:latest
+}
+
+docker_push_prod() {
+    registry="dragonstone:30500"
+    # Check if registry endpoint is accessible
+    if ! curl --silent -f "http://${registry}/v2/" >/dev/null; then
+        echo "Error: Registry endpoint ${registry} is not accessible. Might need to do a port forward first."
+        exit 1
+    fi
+    docker build --platform linux/amd64 -t winterfell-ping:latest .
     docker tag winterfell-ping:latest ${registry}/winterfell-ping:latest
     docker push ${registry}/winterfell-ping:latest
 }
