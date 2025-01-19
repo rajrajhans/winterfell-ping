@@ -22,8 +22,11 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/server.js ./
 
-# Set user to non-root
-USER node
+# Set proper ownership and permissions
+RUN chown -R 1000:1000 /app
+
+# Set user to non-root (node user's UID)
+USER 1000:1000
 
 # Expose port
 EXPOSE 3000
